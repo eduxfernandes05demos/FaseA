@@ -1,6 +1,6 @@
-# 🎮 QuakeLiveDemo - Modernizing a Gaming Classic
+# Modernizing a Monolith
 
-> **Transforming id Software's legendary Quake (1996) into a cloud-native, microservices-based modern gaming platform**
+> **Transforming a C and Assembly monolith into a cloud-native, microservices-based modern  platform**
 
 [![License](https://img.shields.io/badge/license-GPL-blue.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Azure-0078D4.svg)](https://azure.microsoft.com)
@@ -8,11 +8,11 @@
 
 ## 🚀 Project Vision
 
-This project demonstrates the modernization journey of a 30-year-old gaming codebase, transforming Quake's monolithic C architecture into a distributed, cloud-native application. Our goal is to showcase how legacy applications can be reimagined using modern development practices, AI-assisted refactoring, and cloud infrastructure.
+This project demonstrates the modernization journey of a 30-year-old codebase, transforming  monolithic C architecture into a distributed, cloud-native application. Our goal is to showcase how legacy applications can be reimagined using modern development practices, AI-assisted refactoring, and cloud infrastructure.
 
 ## 🎯 Objectives
 
-- **Decompose** the monolithic Quake engine into independent, scalable microservices
+- **Decompose** the monolithic engine into independent, scalable microservices
 - **Modernize** the codebase using contemporary programming languages and frameworks
 - **Containerize** services for cloud deployment and orchestration
 - **Enhance** with real-time telemetry, monitoring, and observability
