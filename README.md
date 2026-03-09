@@ -66,36 +66,43 @@ This project demonstrates the modernization journey of a 30-year-old gaming code
 - **Monitoring**: Application Insights, Prometheus, Grafana
 - **CI/CD**: GitHub Actions, Azure DevOps
 
-## 📋 Roadmap
+## 🌟 Experience the Transformation
 
-### Phase 1: Analysis & Planning ✅
-- [x] Clone original Quake source code
-- [x] Analyze monolithic architecture
-- [ ] Identify service boundaries
-- [ ] Design microservices architecture
+### 🎮 Interactive Demo Scenarios
 
-### Phase 2: Core Services Development 🔄
-- [ ] Implement Player Service
-- [ ] Implement World State Service
-- [ ] Implement Game Engine Service (minimal viable)
-- [ ] Set up Event Bus communication
+#### **Scenario 1: From Monolith to Microservices**
+Watch as we live-refactor portions of the original 1996 C codebase into modern, containerized services. See AI-assisted code generation in action as Copilot helps translate legacy patterns into cloud-native architectures.
 
-### Phase 3: Containerization & Deployment 📦
-- [ ] Create Dockerfiles for each service
-- [ ] Set up Kubernetes manifests
-- [ ] Deploy to Azure Kubernetes Service
-- [ ] Configure auto-scaling
+#### **Scenario 2: Real-Time Scalability in Action**
+Spin up multiple game instances dynamically using Kubernetes orchestration. Demonstrate auto-scaling as player load increases, showcasing the power of cloud-native gaming infrastructure.
 
-### Phase 4: Enhancement & Optimization 🚀
-- [ ] Add telemetry and monitoring
-- [ ] Implement CI/CD pipelines
-- [ ] Performance testing and optimization
-- [ ] Security hardening
+#### **Scenario 3: Observability & Telemetry**
+Dive into live dashboards showing real-time metrics: player positions, physics calculations per second, network latency, and service health. Watch distributed tracing follow a single bullet across multiple microservices.
 
-### Phase 5: Demo & Presentation 🎬
-- [ ] Prepare live demo environment
-- [ ] Create presentation materials
-- [ ] Document lessons learned
+#### **Scenario 4: Security Modernization**
+Explore how zero-trust principles protect the gaming infrastructure. Live demonstration of authentication flows, service-to-service authorization, and threat detection using Azure Security Center.
+
+#### **Scenario 5: AI-Powered Development**
+Experience the future of software modernization with AI pair programming. Watch as GitHub Copilot accelerates development, suggests optimizations, and helps navigate the 90,000+ lines of legacy code.
+
+### 🔥 Live Capabilities
+
+| Feature | Traditional Quake | QuakeLiveDemo |
+|---------|------------------|---------------|
+| **Architecture** | Monolithic C binary | Distributed microservices |
+| **Deployment** | Manual server setup | One-click Kubernetes deploy |
+| **Scaling** | Single server limit | Horizontal auto-scaling |
+| **Monitoring** | Console logs | Full observability stack |
+| **Updates** | Server restart required | Zero-downtime deployments |
+| **Security** | Basic network security | Zero-trust architecture |
+
+### 💡 Technical Innovations Showcased
+
+- **Polyglot Architecture**: Leveraging the best language for each service
+- **Event-Driven Design**: Real-time state synchronization across distributed systems
+- **Chaos Engineering**: Resilience testing with automatic failover
+- **GitOps Workflows**: Infrastructure as Code with automated deployments
+- **AI Collaboration**: Human + AI partnership in legacy code modernization
 
 ## 🎓 AI & Security Summit Demo
 
