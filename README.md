@@ -1,62 +1,62 @@
 # Modernizing a Monolith
 
-> **Transforming a C and Assembly monolith into a cloud-native, microservices-based modern  platform**
+> **Transforming a C and Assembly monolith into a cloud-native, microservices-based modern platform**
 
 [![License](https://img.shields.io/badge/license-GPL-blue.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Azure-0078D4.svg)](https://azure.microsoft.com)
 [![Architecture](https://img.shields.io/badge/architecture-Microservices-brightgreen.svg)](docs/architecture.md)
 
-## 🚀 Project Vision
+## Project Vision
 
-This project demonstrates the modernization journey of a 30-year-old codebase, transforming  monolithic C architecture into a distributed, cloud-native application. Our goal is to showcase how legacy applications can be reimagined using modern development practices, AI-assisted refactoring, and cloud infrastructure.
+This project demonstrates the modernization journey of a 30-year-old codebase, transforming a monolithic C architecture into a distributed, cloud-native application. Our goal is to showcase how legacy applications can be reimagined using modern development practices, AI-assisted refactoring, and cloud infrastructure.
 
-## 🎯 Objectives
+## Objectives
 
 - **Decompose** the monolithic engine into independent, scalable microservices
 - **Modernize** the codebase using contemporary programming languages and frameworks
 - **Containerize** services for cloud deployment and orchestration
 - **Enhance** with real-time telemetry, monitoring, and observability
 - **Secure** the architecture with modern authentication and security practices
-- **Scale** the gaming experience to support massive multiplayer capabilities
+- **Scale** the platform to support high-throughput, distributed workloads
 
-## 🏗️ Planned Architecture
+## Planned Architecture
 
 ### Microservices Breakdown
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│                    API Gateway                          │
-│           (Authentication & Load Balancing)             │
-└─────────────────────────────────────────────────────────┘
-                            │
-        ┌───────────────────┼───────────────────┐
-        │                   │                   │
-┌───────▼───────┐  ┌────────▼────────┐  ┌──────▼──────┐
-│  Game Engine  │  │  Player Service │  │   World     │
-│   Service     │  │   (Profiles &   │  │   State     │
-│  (Physics &   │  │   Auth)         │  │   Service   │
-│   Rendering)  │  └─────────────────┘  │  (Map Data) │
-└───────────────┘                       └─────────────┘
-        │                                       │
-        └───────────────┬───────────────────────┘
-                        │
-            ┌───────────▼──────────┐
-            │   Event Bus          │
-            │   (Real-time Sync)   │
-            └──────────────────────┘
++-----------------------------------------------------------+
+|                    API Gateway                            |
+|           (Authentication & Load Balancing)               |
++-----------------------------------------------------------+
+                            |
+        +-------------------+-------------------+
+        |                   |                   |
++-------v-------+  +--------v--------+  +------v------+
+| Core Engine   |  |  User Service   |  |   State     |
+|   Service     |  |  (Profiles &    |  |   Service   |
+|  (Processing  |  |   Auth)         |  | (Data Mgmt) |
+|   & Compute)  |  +-----------------+  +-------------+
++---------------+                               |
+        |                                       |
+        +-----------------+---------------------+
+                          |
+              +-----------v------------+
+              |   Event Bus            |
+              |   (Real-time Sync)     |
+              +------------------------+
 ```
 
 ### Services
 
-1. **🎮 Game Engine Service** - Core game loop, physics calculations, and render coordination
-2. **👤 Player Service** - User authentication, profiles, inventory, and stats
-3. **🗺️ World State Service** - Map data, entity positions, and game state management
-4. **💬 Chat Service** - Real-time player communication
-5. **📊 Telemetry Service** - Metrics, logging, and performance monitoring
-6. **🔧 Admin Service** - Server management and configuration
-7. **🎯 Matchmaking Service** - Lobby creation and player matching
+1. **Core Engine Service** - Main processing loop, compute operations, and coordination
+2. **User Service** - Authentication, profiles, and access management
+3. **State Service** - Data management, entity state, and persistence
+4. **Messaging Service** - Real-time communication between components
+5. **Telemetry Service** - Metrics, logging, and performance monitoring
+6. **Admin Service** - Platform management and configuration
+7. **Orchestration Service** - Workload distribution and scheduling
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 - **Languages**: C# (.NET), Python, TypeScript/Node.js
 - **Containerization**: Docker, Kubernetes (AKS)
@@ -66,37 +66,35 @@ This project demonstrates the modernization journey of a 30-year-old codebase, t
 - **Monitoring**: Application Insights, Prometheus, Grafana
 - **CI/CD**: GitHub Actions, Azure DevOps
 
-## 🌟 Experience the Transformation
+## The Transformation
 
-### 🎮 Interactive Demo Scenarios
+### Scenario 1: From Monolith to Microservices
+Live-refactor portions of the original C codebase into modern, containerized services. AI-assisted code generation with Copilot helps translate legacy patterns into cloud-native architectures.
 
-#### **Scenario 1: From Monolith to Microservices**
-Watch as we live-refactor portions of the original 1996 C codebase into modern, containerized services. See AI-assisted code generation in action as Copilot helps translate legacy patterns into cloud-native architectures.
+### Scenario 2: Real-Time Scalability
+Spin up multiple service instances dynamically using Kubernetes orchestration. Auto-scaling as load increases, showcasing the power of cloud-native infrastructure.
 
-#### **Scenario 2: Real-Time Scalability in Action**
-Spin up multiple game instances dynamically using Kubernetes orchestration. Demonstrate auto-scaling as player load increases, showcasing the power of cloud-native gaming infrastructure.
+### Scenario 3: Observability & Telemetry
+Live dashboards showing real-time metrics: processing throughput, network latency, and service health. Distributed tracing follows requests across multiple microservices.
 
-#### **Scenario 3: Observability & Telemetry**
-Dive into live dashboards showing real-time metrics: player positions, physics calculations per second, network latency, and service health. Watch distributed tracing follow a single bullet across multiple microservices.
+### Scenario 4: Security Modernization
+Zero-trust principles protecting the infrastructure. Authentication flows, service-to-service authorization, and threat detection using Azure Security Center.
 
-#### **Scenario 4: Security Modernization**
-Explore how zero-trust principles protect the gaming infrastructure. Live demonstration of authentication flows, service-to-service authorization, and threat detection using Azure Security Center.
+### Scenario 5: AI-Powered Development
+AI pair programming accelerates modernization. GitHub Copilot suggests optimizations and helps navigate 90,000+ lines of legacy code.
 
-#### **Scenario 5: AI-Powered Development**
-Experience the future of software modernization with AI pair programming. Watch as GitHub Copilot accelerates development, suggests optimizations, and helps navigate the 90,000+ lines of legacy code.
+### Comparison
 
-### 🔥 Live Capabilities
-
-| Feature | Traditional Quake | QuakeLiveDemo |
-|---------|------------------|---------------|
+| Feature | Legacy Monolith | Modernized Platform |
+|---------|----------------|---------------------|
 | **Architecture** | Monolithic C binary | Distributed microservices |
-| **Deployment** | Manual server setup | One-click Kubernetes deploy |
+| **Deployment** | Manual setup | One-click Kubernetes deploy |
 | **Scaling** | Single server limit | Horizontal auto-scaling |
 | **Monitoring** | Console logs | Full observability stack |
-| **Updates** | Server restart required | Zero-downtime deployments |
+| **Updates** | Full restart required | Zero-downtime deployments |
 | **Security** | Basic network security | Zero-trust architecture |
 
-### 💡 Technical Innovations Showcased
+### Technical Innovations
 
 - **Polyglot Architecture**: Leveraging the best language for each service
 - **Event-Driven Design**: Real-time state synchronization across distributed systems
@@ -104,7 +102,7 @@ Experience the future of software modernization with AI pair programming. Watch 
 - **GitOps Workflows**: Infrastructure as Code with automated deployments
 - **AI Collaboration**: Human + AI partnership in legacy code modernization
 
-## 🎓 AI & Security Summit Demo
+## AI & Security Summit Demo
 
 This project serves as a demonstration for the **AI & Security Summit**, showcasing:
 
@@ -113,7 +111,7 @@ This project serves as a demonstration for the **AI & Security Summit**, showcas
 - **Cloud-Native Patterns**: Demonstrating scalability, resilience, and observability
 - **Legacy Migration**: Real-world example of transforming vintage code to modern standards
 
-## 🚦 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -126,38 +124,21 @@ This project serves as a demonstration for the **AI & Security Summit**, showcas
 
 ```bash
 # Clone the repository
-git clone https://github.com/eduxfernandes05/QuakeLiveDemo.git
-cd QuakeLiveDemo
+git clone https://github.com/eduxfernandes05/FaseA.git
+cd FaseA
 
-# TODO: Run local development environment
+# Run local development environment
 docker-compose up -d
-
-# TODO: Access the services
-# Game Engine: http://localhost:5000
-# Player Service: http://localhost:5001
-# World State: http://localhost:5002
 ```
 
-## 📚 Original Quake Source
-
-This project builds upon the legendary Quake engine released by id Software. The original source code is preserved in the `/Quake` directory and serves as the foundation for our modernization efforts.
-
-**Original Repository**: [id-Software/Quake](https://github.com/id-Software/Quake)
-
-## 🤝 Contributing
+## Contributing
 
 This is a demonstration project, but feedback and suggestions are welcome! Feel free to open issues or submit pull requests.
 
-## 📄 License
+## License
 
-The original Quake source code is licensed under GPL-2.0. Our modernization efforts and additional code follow the same license.
-
-## 🙏 Acknowledgments
-
-- **id Software** for releasing the Quake source code
-- **John Carmack** and the original Quake development team
-- The open-source gaming community
+Licensed under GPL-2.0.
 
 ---
 
-**⚡ Built with passion for gaming history and modern cloud architecture**
+**Built with passion for software modernization and cloud architecture**
