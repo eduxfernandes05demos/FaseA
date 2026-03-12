@@ -19,52 +19,55 @@ This project demonstrates the modernization journey of a 30-year-old codebase, t
 - **Secure** the architecture with modern authentication and security practices
 - **Scale** the platform to support high-throughput, distributed workloads
 
-## Planned Architecture
-
-### Microservices Breakdown
+## Architecture Overview
 
 ```
-+-----------------------------------------------------------+
-|                    API Gateway                            |
-|           (Authentication & Load Balancing)               |
-+-----------------------------------------------------------+
-                            |
-        +-------------------+-------------------+
-        |                   |                   |
-+-------v-------+  +--------v--------+  +------v------+
-| Core Engine   |  |  User Service   |  |   State     |
-|   Service     |  |  (Profiles &    |  |   Service   |
-|  (Processing  |  |   Auth)         |  | (Data Mgmt) |
-|   & Compute)  |  +-----------------+  +-------------+
-+---------------+                               |
-        |                                       |
-        +-----------------+---------------------+
-                          |
-              +-----------v------------+
-              |   Event Bus            |
-              |   (Real-time Sync)     |
-              +------------------------+
+Browser (WebRTC)
+    |
+    v
++------------------+     +------------------+
+| Streaming Gateway|---->|   Engine Worker   |
+|   (Go, :8090)    |     | (Headless C App)  |
+| WebSocket signal |     |  RGBA framebuffer |
+| + HTML client    |     |  :8080 /healthz   |
++------------------+     +------------------+
+    |                          |
+    v                          v
++------------------+     +------------------+
+| Session Manager  |     |  Telemetry API   |
+|   (Go, :8080)    |     |   (Go, :8060)    |
+| POST/GET/DELETE  |     | -> App Insights  |
+| /api/sessions    |     | /api/events      |
++------------------+     +------------------+
+    |
+    v
++------------------+
+|   Assets API     |
+|   (Go, :8070)    |
+| Static content   |
+| /api/assets/     |
++------------------+
 ```
 
 ### Services
 
-1. **Core Engine Service** - Main processing loop, compute operations, and coordination
-2. **User Service** - Authentication, profiles, and access management
-3. **State Service** - Data management, entity state, and persistence
-4. **Messaging Service** - Real-time communication between components
-5. **Telemetry Service** - Metrics, logging, and performance monitoring
-6. **Admin Service** - Platform management and configuration
-7. **Orchestration Service** - Workload distribution and scheduling
+1. **Streaming Gateway** (Go, port 8090) - WebSocket signaling server for WebRTC connection setup, frame encoding (VP8/H.264), HTML client serving, and input routing
+2. **Engine Worker** (C, port 8080) - Headless modernized engine producing RGBA framebuffer output, with health endpoint at `/healthz` and environment-based configuration
+3. **Session Manager** (Go, port 8080) - REST API for session lifecycle (`POST/GET/DELETE /api/sessions`), instance creation/destruction, health monitoring, scale-to-zero support
+4. **Assets API** (Go, port 8070) - Static content server reading from Azure Files mount, with caching headers for asset delivery
+5. **Telemetry API** (Go, port 8060) - Event ingestion (`POST /api/events`) forwarding to Azure Application Insights, structured logging and metrics
 
 ## Technology Stack
 
-- **Languages**: C# (.NET), Python, TypeScript/Node.js
-- **Containerization**: Docker, Kubernetes (AKS)
+- **Languages**: C (engine), Go (services), Bicep (IaC)
+- **Containerization**: Docker, Azure Container Apps
 - **Cloud Platform**: Microsoft Azure
-- **Message Broker**: Azure Service Bus / RabbitMQ
-- **Database**: Azure Cosmos DB, Redis Cache
-- **Monitoring**: Application Insights, Prometheus, Grafana
-- **CI/CD**: GitHub Actions, Azure DevOps
+- **Streaming**: WebRTC, WebSocket signaling
+- **Storage**: Azure Files
+- **Secrets**: Azure Key Vault (RBAC auth)
+- **Monitoring**: Application Insights, Log Analytics
+- **Registry**: Azure Container Registry
+- **CI/CD**: GitHub Actions
 
 ## The Transformation
 
@@ -72,7 +75,7 @@ This project demonstrates the modernization journey of a 30-year-old codebase, t
 Live-refactor portions of the original C codebase into modern, containerized services. AI-assisted code generation with Copilot helps translate legacy patterns into cloud-native architectures.
 
 ### Scenario 2: Real-Time Scalability
-Spin up multiple service instances dynamically using Kubernetes orchestration. Auto-scaling as load increases, showcasing the power of cloud-native infrastructure.
+Spin up multiple service instances dynamically using container orchestration. Auto-scaling as load increases, with scale-to-zero for idle workers.
 
 ### Scenario 3: Observability & Telemetry
 Live dashboards showing real-time metrics: processing throughput, network latency, and service health. Distributed tracing follows requests across multiple microservices.
@@ -87,29 +90,33 @@ AI pair programming accelerates modernization. GitHub Copilot suggests optimizat
 
 | Feature | Legacy Monolith | Modernized Platform |
 |---------|----------------|---------------------|
-| **Architecture** | Monolithic C binary | Distributed microservices |
-| **Deployment** | Manual setup | One-click Kubernetes deploy |
-| **Scaling** | Single server limit | Horizontal auto-scaling |
-| **Monitoring** | Console logs | Full observability stack |
+| **Architecture** | Monolithic C binary | 5 distributed microservices |
+| **Deployment** | Manual setup | Containerized on Azure Container Apps |
+| **Scaling** | Single server limit | Horizontal auto-scaling (0 to N) |
+| **Monitoring** | Console logs | App Insights + Log Analytics |
 | **Updates** | Full restart required | Zero-downtime deployments |
-| **Security** | Basic network security | Zero-trust architecture |
+| **Security** | Basic network security | Key Vault + RBAC + zero-trust |
+| **Access** | Local binary only | Browser via WebRTC streaming |
 
 ### Technical Innovations
 
-- **Polyglot Architecture**: Leveraging the best language for each service
+- **Headless Engine**: Legacy rendering replaced with framebuffer output for cloud streaming
+- **WebRTC Streaming**: Real-time browser access without client installation
 - **Event-Driven Design**: Real-time state synchronization across distributed systems
-- **Chaos Engineering**: Resilience testing with automatic failover
+- **Scale-to-Zero**: No idle cost  workers scale down when unused
 - **GitOps Workflows**: Infrastructure as Code with automated deployments
 - **AI Collaboration**: Human + AI partnership in legacy code modernization
 
-## AI & Security Summit Demo
+## Azure Resources
 
-This project serves as a demonstration for the **AI & Security Summit**, showcasing:
-
-- **AI-Assisted Refactoring**: Using GitHub Copilot and other AI tools to accelerate modernization
-- **Security Best Practices**: Implementing zero-trust architecture and secure coding practices
-- **Cloud-Native Patterns**: Demonstrating scalability, resilience, and observability
-- **Legacy Migration**: Real-world example of transforming vintage code to modern standards
+| Resource | Purpose |
+|----------|---------|
+| Azure Container Registry | Stores container images |
+| Azure Container Apps Environment | Hosts all containers |
+| Engine Worker Container App | Headless engine (0 to N replicas) |
+| Azure Files | Persistent storage for assets |
+| Azure Key Vault | Secrets management (RBAC auth) |
+| Application Insights + Log Analytics | Monitoring and telemetry |
 
 ## Getting Started
 
